@@ -1,4 +1,4 @@
-module github.com/hi120ki/clf
+module github.com/shfz/fzcli
 
 go 1.16
 

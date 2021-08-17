@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "github.com/hi120ki/clf/cmd"
+import "github.com/shfz/fzcli/cmd"
 
 func main() {
 	cmd.Execute()

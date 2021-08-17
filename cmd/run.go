@@ -18,9 +18,9 @@ package cmd
 import (
 	"log"
 
-	"github.com/hi120ki/clf/run"
-	"github.com/hi120ki/clf/ui"
-	"github.com/hi120ki/clf/util"
+	"github.com/shfz/fzcli/run"
+	"github.com/shfz/fzcli/ui"
+	"github.com/shfz/fzcli/util"
 	"github.com/spf13/cobra"
 )
 

@@ -13,8 +13,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hi120ki/clf/model"
-	"github.com/hi120ki/clf/ui"
+	"github.com/shfz/fzcli/model"
+	"github.com/shfz/fzcli/ui"
 	"golang.org/x/sync/errgroup"
 	"golang.org/x/sync/semaphore"
 )
