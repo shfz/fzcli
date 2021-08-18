@@ -2,6 +2,8 @@
 
 Scenario-based fuzzing test execution tool
 
+![fzcli](https://user-images.githubusercontent.com/12624257/129859210-f29a0d7f-7e1e-42a6-a855-0e83d05b4cde.gif)
+
 ## Features
 
 - **Easy to customize** fuzzing test for web applications
