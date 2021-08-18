@@ -1,10 +1,12 @@
 # fzcli
 
+Scenario-based fuzzing test execution tool
+
 ## Features
 
-- Easy to customize fuzzing for web applications
-- Scripting fuzzing scenario in JavaScript / TypeScript
-- Third-party packages can be used in scenario script
+- **Easy to customize** fuzzing test for web applications
+- Scripting fuzzing scenario **in JavaScript / TypeScript**
+- **Third-party packages** can be used in scenario script
 
 ## Install
 
@@ -23,7 +25,9 @@ $ sudo chmod +x /usr/local/bin/fzcli
 
 ## Usage
 
-Please refer to [shfz/fzlib-node](https://github.com/shfz/fzlib-node) for creating scenarios.
+This tool runs a scenario that calls http requests for the web application, with automatically embeds the fuzz in the request parameter (`username`, `password`, etc).
+
+Please refer to [shfz/fzlib-node](https://github.com/shfz/fzlib-node) for how to script scenarios.
 
 ```
 fzcli run -t scenario.js -o /tmp/fzlog -p 10 -n 100
