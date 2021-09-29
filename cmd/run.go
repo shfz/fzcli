@@ -29,6 +29,7 @@ var (
 	number   int
 	parallel int64
 	output   string
+	view     string
 )
 
 // runCmd represents the run command
@@ -45,9 +46,15 @@ to quickly create a Cobra application.`,
 		if !util.FileExists(target) {
 			log.Fatal("[-] No target file found : ", target)
 		}
-		ui.Init()
-		if err := run.Run(target, parallel, number, output); err != nil {
-			log.Fatal("[-] Failed to run : ", err)
+		if view == "on" {
+			ui.Init()
+			if err := run.Run(target, parallel, number, output, true); err != nil {
+				log.Fatal("[-] Failed to run : ", err)
+			}
+		} else {
+			if err := run.Run(target, parallel, number, output, false); err != nil {
+				log.Fatal("[-] Failed to run : ", err)
+			}
 		}
 	},
 }
@@ -73,4 +80,5 @@ func init() {
 	runCmd.Flags().Int64VarP(&parallel, "parallel", "p", 1, "parallel")
 	runCmd.Flags().IntVarP(&number, "number", "n", 1, "number")
 	runCmd.Flags().StringVarP(&output, "output", "o", "", "output directory")
+	runCmd.Flags().StringVarP(&view, "view", "v", "on", "view ui")
 }

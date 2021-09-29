@@ -1,5 +1,8 @@
-all:
-	go run main.go run -t ../nfl/examples/flask.js -o log/ -p 5 -n 100
+run:
+	go run main.go run -t ../demo-typescript/index.js -o log/ -p 5 -n 20
+
+cli:
+	go run main.go run -t ../demo-typescript/index.js -o log/ -p 5 -n 20 -v off
 
 build:
 	make pre

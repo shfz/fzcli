@@ -34,15 +34,17 @@ type Http struct {
 
 var r = model.Result{}
 
-func Run(target string, parallel int64, number int, logDir string) (err error) {
+func Run(target string, parallel int64, number int, logDir string, view bool) (err error) {
 	r.Total = uint64(number)
 	path := filepath.Join(logDir, time.Now().Format("20060102150405")+".log")
 	start := time.Now()
-	if err := ExecParallel(target, parallel, number, path); err != nil {
+	if err := ExecParallel(target, parallel, number, path, view); err != nil {
 		return err
 	}
 	end := time.Now()
-	ui.Close()
+	if view {
+		ui.Close()
+	}
 	fmt.Printf("[+] Time : %f seconds\n", (end.Sub(start)).Seconds())
 	fmt.Println("[+] Log : " + path)
 	fmt.Println("[+] Success : " + strconv.FormatUint(r.Success, 10) + " (" + strconv.Itoa(int(100*r.Success/r.Total)) + "%)")
@@ -50,7 +52,7 @@ func Run(target string, parallel int64, number int, logDir string) (err error) {
 	return nil
 }
 
-func ExecParallel(target string, parallel int64, number int, path string) (err error) {
+func ExecParallel(target string, parallel int64, number int, path string, view bool) (err error) {
 	file, err := os.Create(path)
 	if err != nil {
 		return err
@@ -86,11 +88,15 @@ func ExecParallel(target string, parallel int64, number int, path string) (err e
 				r.Failure += 1
 				r.Message = append(r.Message, time.Now().Format("15:04:05")+" "+res.Http.Method+" "+strconv.FormatUint(res.Http.Status, 10)+" "+res.Http.Url+" "+res.Message)
 			}
-			ui.Update(r)
-			// write log
-			_, err = file.WriteString(out)
-			if err != nil {
-				return err
+			if view {
+				ui.Update(r)
+				// write log
+				_, err = file.WriteString(out)
+				if err != nil {
+					return err
+				}
+			} else {
+				fmt.Print(out)
 			}
 			mutex.Unlock()
 
